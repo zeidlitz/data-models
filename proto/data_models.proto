@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package data_models.v1; 
+
+message RedditData {
+  string subreddit = 1;
+  string title = 2;
+  string body = 3;
+  int64 unix_timestamp = 4;
+}
+
+message AnalysisResult {
+  string subreddit = 1;
+  string title = 2;
+  string body = 3;
+  repeated string categories = 4;
+  string sentiment = 5;
+  int64 unix_timestamp = 6;
+}
