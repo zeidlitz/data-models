@@ -19,9 +19,9 @@ jobs:
 
       - name: Generate Python Code
         run: |
-          mkdir -p generated
-          protoc --python_out=generated ./proto/*.proto
-          touch generated/__init__.py
+          mkdir -p data_models
+          protoc --python_out=data_models ./proto/*.proto
+          touch data_models/__init__.py
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -31,9 +31,9 @@ jobs:
       - name: Build and Publish
         env:
           TWINE_USERNAME: ${{ github.actor }}
-          TWINE_PASSWORD: ${{ secrets.GH_ACTION_TOKEN }}
-          TWINE_REPOSITORY_URL: https://pypi.pkg.github.com/${{ github.repository }}
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          TWINE_REPOSITORY_URL: https://pypi.pkg.github.com/${{ github.repository }}/
         run: |
           pip install build twine
           python -m build
-          twine upload --repository-url $TWINE_REPOSITORY_URL dist/*
+          twine upload --repository-url "$TWINE_REPOSITORY_URL" dist/*
