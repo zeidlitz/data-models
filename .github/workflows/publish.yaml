@@ -32,9 +32,9 @@ jobs:
         env:
           TWINE_USERNAME: ${{ github.actor }}
           TWINE_PASSWORD: ${{ secrets.GH_ACTION_TOKEN }}
-          TWINE_REPOSITORY_URL: https://pypi.pkg.github.com/${{ github.owner }}/${{ github.repository }}
+          # TWINE_REPOSITORY_URL: https://pypi.pkg.github.com/${{ github.owner }}/${{ github.repository }}
+          TWINE_REPOSITORY_URL: amicrazy
         run: |
           pip install build twine
           python -m build
-          echo "Uploading to: $TWINE_REPOSITORY_URL"
           twine upload --repository-url $TWINE_REPOSITORY_URL dist/*
