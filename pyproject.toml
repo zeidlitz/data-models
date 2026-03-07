@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "data-models"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
     "protobuf>=4.21.0",
 ]
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
 include = ["data_models*"]

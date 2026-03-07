@@ -10,10 +10,7 @@ message RedditData {
 }
 
 message AnalysisResult {
-  string subreddit = 1;
-  string title = 2;
-  string body = 3;
-  repeated string categories = 4;
-  string sentiment = 5;
-  int64 unix_timestamp = 6;
+  RedditData raw_data = 1;
+  repeated string categories = 2;
+  string sentiment = 3;
 }
