@@ -91,12 +91,9 @@ func (x *RedditData) GetUnixTimestamp() int64 {
 
 type AnalysisResult struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Subreddit     string                 `protobuf:"bytes,1,opt,name=subreddit,proto3" json:"subreddit,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Body          string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	Categories    []string               `protobuf:"bytes,4,rep,name=categories,proto3" json:"categories,omitempty"`
-	Sentiment     string                 `protobuf:"bytes,5,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
-	UnixTimestamp int64                  `protobuf:"varint,6,opt,name=unix_timestamp,json=unixTimestamp,proto3" json:"unix_timestamp,omitempty"`
+	RawData       *RedditData            `protobuf:"bytes,1,opt,name=raw_data,json=rawData,proto3" json:"raw_data,omitempty"`
+	Categories    []string               `protobuf:"bytes,2,rep,name=categories,proto3" json:"categories,omitempty"`
+	Sentiment     string                 `protobuf:"bytes,3,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,25 +128,11 @@ func (*AnalysisResult) Descriptor() ([]byte, []int) {
 	return file_proto_data_models_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AnalysisResult) GetSubreddit() string {
+func (x *AnalysisResult) GetRawData() *RedditData {
 	if x != nil {
-		return x.Subreddit
+		return x.RawData
 	}
-	return ""
-}
-
-func (x *AnalysisResult) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *AnalysisResult) GetBody() string {
-	if x != nil {
-		return x.Body
-	}
-	return ""
+	return nil
 }
 
 func (x *AnalysisResult) GetCategories() []string {
@@ -166,13 +149,6 @@ func (x *AnalysisResult) GetSentiment() string {
 	return ""
 }
 
-func (x *AnalysisResult) GetUnixTimestamp() int64 {
-	if x != nil {
-		return x.UnixTimestamp
-	}
-	return 0
-}
-
 var File_proto_data_models_proto protoreflect.FileDescriptor
 
 const file_proto_data_models_proto_rawDesc = "" +
@@ -183,16 +159,13 @@ const file_proto_data_models_proto_rawDesc = "" +
 	"\tsubreddit\x18\x01 \x01(\tR\tsubreddit\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x03 \x01(\tR\x04body\x12%\n" +
-	"\x0eunix_timestamp\x18\x04 \x01(\x03R\runixTimestamp\"\xbd\x01\n" +
-	"\x0eAnalysisResult\x12\x1c\n" +
-	"\tsubreddit\x18\x01 \x01(\tR\tsubreddit\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x03 \x01(\tR\x04body\x12\x1e\n" +
+	"\x0eunix_timestamp\x18\x04 \x01(\x03R\runixTimestamp\"\x85\x01\n" +
+	"\x0eAnalysisResult\x125\n" +
+	"\braw_data\x18\x01 \x01(\v2\x1a.data_models.v1.RedditDataR\arawData\x12\x1e\n" +
 	"\n" +
-	"categories\x18\x04 \x03(\tR\n" +
+	"categories\x18\x02 \x03(\tR\n" +
 	"categories\x12\x1c\n" +
-	"\tsentiment\x18\x05 \x01(\tR\tsentiment\x12%\n" +
-	"\x0eunix_timestamp\x18\x06 \x01(\x03R\runixTimestampB8Z6github.com/zeidlitz/data-models/generated/go/analyticsb\x06proto3"
+	"\tsentiment\x18\x03 \x01(\tR\tsentimentB8Z6github.com/zeidlitz/data-models/generated/go/analyticsb\x06proto3"
 
 var (
 	file_proto_data_models_proto_rawDescOnce sync.Once
@@ -212,11 +185,12 @@ var file_proto_data_models_proto_goTypes = []any{
 	(*AnalysisResult)(nil), // 1: data_models.v1.AnalysisResult
 }
 var file_proto_data_models_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: data_models.v1.AnalysisResult.raw_data:type_name -> data_models.v1.RedditData
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_data_models_proto_init() }
