@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package data_models.v1; 
+option go_package = "github.com/zeidlitz/data-models/generated/go/analytics";
 
 message RedditData {
   string subreddit = 1;
